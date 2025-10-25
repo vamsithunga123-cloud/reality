@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maytri Reality</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Navbar overlay */
+        .navbar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand img {
+            width: 100px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: white;
+            font-weight: 500;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                width: 70px;
+            }
+        }
+
+        /* Carousel */
+        #bannerCarousel .carousel-item {
+            height: 500px;
+        }
+
+        #bannerCarousel .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .carousel .carousel-item {
+            transition: transform 1s ease, opacity 1s ease;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .btn {
+            position: absolute;
+            top: 230px;
+            right: 0px;
+        }
+
+        #para_about {
+            box-shadow: 5px 5px 10px gray;
+        }
+
+        #para_about img {
+            width: 10%;
+        }
+
+        .head_top {
+            text-align: center;
+            color: white;
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        .box {
+            background-color: lightblue;
+            box-shadow: 0 0 5px gray;
+            transition: 0.3s ease;
+        }
+
+        .box:hover {
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .details_kuteer {
+            flex: 1;
+        }
+
+        .half_img {
+            flex: 1;
+            padding-left: 150px;
+        }
+
+        .half_img img {
+            width: 75%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .project {
+            box-shadow: 10px 10px 10px 10px gray;
+        }
+
+        .form_project_details {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .form-container,
+        .linksToOtherProjects {
+            flex: 1;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .form-container {
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .linksToOtherProjects {
+            background: #add8e6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .linksToOtherProjects a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin: 8px 0;
+            transition: 0.3s;
+            border: 1px gray solid;
+            box-shadow: 1px 1px gray;
+            background-color: red;
+        }
+
+        .linksToOtherProjects a:hover {
+            transform: scale(1.05);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .heading_projects {
+            padding: 10px;
+            box-shadow: 5px 5px 5px 5px gray;
+        }
+
+        .submit {
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            color: #fff;
+            border: none;
+            padding: 8px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: 0.3s ease;
+        }
+
+        .submit:hover {
+            background: linear-gradient(135deg, #0a58ca, #084298);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .p1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            flex: 1 1 300px;
+            max-width: 600px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .p1 img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .p1 h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .p1 h5 {
+            margin: 0;
+            font-size: 1rem;
+            color: gray;
+        }
+
+        @media (max-width:576px) {
+            .p1 {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .p1 img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        .contact-us h2 {
+            margin-bottom: 20px;
+            color: #0d6efd;
+        }
+
+        .contact-us .btn-primary {
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            border: none;
+            transition: 0.3s;
+        }
+
+        .contact-us .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .enquiry-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 50px;
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: 0.3s;
+        }
+
+        .enquiry-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-overlay">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img th:src="@{/images/logo.jpeg}" alt="Logo"></a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about_us">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact_us">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="bannerCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://maytrigroup.in/public/uploads/sliders/Banner%201.webp" class="d-block w-100"
+                    alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="https://maytrigroup.in/public/uploads/sliders/Banner%201.webp" class="d-block w-100"
+                    alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="https://maytrigroup.in/public/uploads/sliders/Banner%201.webp" class="d-block w-100"
+                    alt="Slide 3">
+            </div>
+            <div class="carousel-item">
+                <img src="https://maytrigroup.in/public/uploads/sliders/Banner%201.webp" class="d-block w-100"
+                    alt="Slide 4">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Home Section -->
+    <div id="home" class="container mt-5 pt-5">
+        <h3 class="bg-primary head_top">Get to know Who we are</h3><br>
+        <p class="box" id="para_about"><img th:src="@{/images/man.png}" alt="hand_signal">
+
+            Maytri is a trusted construction group offering best real estate in Hyderabad.
+                With 13
+                years of experience,
+                we are known for building homes and spaces that people love to live in. Our projects are designed to
+                give
+                families comfort, safety, and modern living, while also keeping nature and open spaces in mind. Over the
+                years, Maytri has created many successful residential projects that bring together quality, style, and
+                value.
+
+                Every project we take up is carefully planned with attention to detail. From wide layouts and green
+                surroundings to strong structures and modern designs, we make sure everything adds to a better
+                lifestyle.
+                For a family looking for their dream home, Maytri truly fits their needs.
+
+                Our team works with honesty, transparency, and dedication, which has helped us earn the trust of many
+                happy
+                customers. We deliver projects on time and focus on creating safe, peaceful, and well-connected
+                communities
+                across Hyderabad.
+
+                If you are looking for a home or an investment that gives you comfort, value, and growth, we are here to
+                help you find the perfect place.
+        </p>
+
+        <!-- Kuteer Project -->
+        <div class="project container box bg-white my-4">
+            <h3 class="text-center text-primary">Look in for Kuteer here</h3>
+            <div class="project-content">
+                <div class="details_kuteer">
+                    <p>The ever-blooming life of Kuteer is placed at the neighbourhood of unsurpassed superiority.
+                        The remarkable residences present you with a lifestyle that’s in-touch with the purest essence
+                        of life,
+                        and is at the nexus of city’s furthermost developments.</p>
+                    <h4 class="text-danger">TS RERA Regn No. P01101231213213</h4>
+                </div>
+                <div class="half_img">
+                    <img th:src="@{images/half_building.jpg}" alt="building_img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Projects Section -->
+    <div id="projects" class="container my-5">
+        <h1 class="text-center heading_projects">For all Our Projects</h1><br>
+        <div class="form_project_details">
+
+            <!-- Left Side: Project Enquiry Form -->
+            <div class="form-container p-4">
+                <h4 class="text-center mb-3">Send an Enquiry</h4>
+                <div th:if="${projectSuccessMessage}" class="alert alert-success" th:text="${projectSuccessMessage}">
+                </div>
+                <form th:action="@{/enquiry/project}" th:object="${projectEnquiry}" method="post"
+                    class="p-4 rounded box" style="width:100%;">
+
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" th:field="*{name}" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" th:field="*{phone}" placeholder="Your Phone Number"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" th:field="*{email}" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Interest</label>
+                        <input type="text" class="form-control" th:field="*{interest}" placeholder="Your Interest">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-control" th:field="*{message}" rows="4"
+                            placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="submit">Submit</button>
+                </form>
+            </div>
+
+            <!-- Right Side: Other Projects Links -->
+            <div class="linksToOtherProjects box">
+                <h3>Explore Our Projects</h3>
+                <a href="#">Kuteer</a>
+                <a href="#">Ambhuja</a>
+                <a href="#">Susheela</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div id="about_us" class="container my-5">
+        <h2 class="text-center">We are at MaytriReality</h2>
+        <p>Maytri Group is a trusted name in real estate and infrastructure development...</p>
+        <div class="team-container">
+            <div class="p1">
+                <img src="https://maytrigroup.in/public/uploads/teams/team_1760338051_Managing%20Partner.webp"
+                    alt="person_image">
+                <div>
+                    <h3>Santhosh Reddy</h3>
+                    <h5>Managing Director</h5>
+                </div>
+            </div>
+            <div class="p1">
+                <img src="https://maytrigroup.in/public/uploads/teams/team_1760338051_Managing%20Partner.webp"
+                    alt="person_image">
+                <div>
+                    <h3>Santhosh Reddy</h3>
+                    <h5>Managing Director</h5>
+                </div>
+            </div>
+            <div class="p1">
+                <img src="https://maytrigroup.in/public/uploads/teams/team_1760338051_Managing%20Partner.webp"
+                    alt="person_image">
+                <div>
+                    <h3>Santhosh Reddy</h3>
+                    <h5>Managing Director</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div id="contact_us" class="container my-5 contact-us">
+        <div class="row g-4">
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="p-4 bg-white shadow rounded">
+                    <h2>Contact Us</h2>
+                    <div th:if="${contactSuccessMessage}" class="alert alert-success"
+                        th:text="${contactSuccessMessage}"></div>
+                    <form th:action="@{/enquiry/contact}" th:object="${contactEnquiry}" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" th:field="*{name}" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" th:field="*{email}" placeholder="Your Email"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" th:field="*{message}" rows="5"
+                                placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-6">
+                <div class="p-4 bg-light shadow rounded">
+                    <h2>Get in Touch</h2>
+                    <p>We would love to hear from you! Reach out via any of the following ways:</p>
+                    <ul class="list-unstyled">
+                        <li><strong>Address:</strong> 123 Maytri Street, Hyderabad, India</li>
+                        <li><strong>Phone:</strong> +91 12345 67890</li>
+                        <li><strong>Email:</strong> info@maytrigroup.in</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Enquiry Button -->
+    <button class="enquiry-btn" data-bs-toggle="modal" data-bs-target="#enquiryModal">Enquiry Now</button>
+
+    <!-- Modal Enquiry Form -->
+    <div class="modal fade" id="enquiryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Enquiry Now</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div th:if="${modalSuccessMessage}" class="alert alert-success" th:text="${modalSuccessMessage}">
+                    </div>
+                    <form th:action="@{/enquiry/modal}" th:object="${modalEnquiry}" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" th:field="*{name}" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" th:field="*{phone}" placeholder="Your Phone"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" th:field="*{email}" placeholder="Your Email"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Interest</label>
+                            <input type="text" class="form-control" th:field="*{interest}"
+                                placeholder="Project or Service">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" th:field="*{message}" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit">Submit Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5>About Maytri Group</h5>
+                    <p>Maytri Group is a trusted name in real estate and infrastructure development...</p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white">Home</a></li>
+                        <li><a href="#projects" class="text-white">Projects</a></li>
+                        <li><a href="#about_us" class="text-white">About Us</a></li>
+                        <li><a href="#contact_us" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><strong>Address:</strong> 123 Maytri Street, Hyderabad, India</li>
+                        <li><strong>Phone:</strong> +91 12345 67890</li>
+                        <li><strong>Email:</strong> info@maytrigroup.in</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Follow Us</h5>
+                    <div class="d-flex gap-2 mt-2">
+                        <a href="#" class="btn btn-outline-light btn-sm">Facebook</a>
+                        <a href="#" class="btn btn-outline-light btn-sm">Twitter</a>
+                        <a href="#" class="btn btn-outline-light btn-sm">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light mt-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Maytri Group. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
