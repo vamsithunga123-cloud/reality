@@ -8,7 +8,25 @@
 </head>
 <body>
 <div class="container my-5">
-    <h2 class="mb-4">All Submitted Enquiries</h2>
+    <h2 class="mb-4 text-center">All Submitted Enquiries</h2>
+
+    <!-- ✅ Date Filter Form -->
+    <form method="get" th:action="@{/admin/enquiries}" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" th:value="${startDate}">
+        </div>
+        <div class="col-md-4">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" th:value="${endDate}">
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary me-2">Filter</button>
+            <a th:href="@{'/admin-enquiries/download-by-date'(startDate=${startDate}, endDate=${endDate})}" class="btn btn-success">Download CSV</a>
+        </div>
+    </form>
+
+    <!-- ✅ Enquiries Table -->
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
@@ -18,16 +36,18 @@
                 <th>Email</th>
                 <th>Interest</th>
                 <th>Message</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="enquiry : ${enquiries}">
-                <td th:text="${enquiry.id}">1</td>
-                <td th:text="${enquiry.name}">John Doe</td>
-                <td th:text="${enquiry.phone}">1234567890</td>
-                <td th:text="${enquiry.email}">john@example.com</td>
-                <td th:text="${enquiry.interest}">Kuteer Project</td>
-                <td th:text="${enquiry.message}">Hello!</td>
+                <td th:text="${enquiry.id}"></td>
+                <td th:text="${enquiry.name}"></td>
+                <td th:text="${enquiry.phone}"></td>
+                <td th:text="${enquiry.email}"></td>
+                <td th:text="${enquiry.interest}"></td>
+                <td th:text="${enquiry.message}"></td>
+                <td th:text="${enquiry.createdDate}"></td>
             </tr>
         </tbody>
     </table>

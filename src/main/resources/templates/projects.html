@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaytriReality</title>
+
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Styles for hover effects -->
+<style>
+    .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-image-wrapper {
+        overflow: hidden;
+    }
+
+    .project-image-wrapper img {
+        transition: transform 0.4s ease;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .project-card:hover .project-image-wrapper img {
+        transform: scale(1.05);
+    }
+
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+        border-radius: 6px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0048c9;
+    }
+</style>
+
+<body>
+    <div th:replace="headersAndFooters/navbar"></div>
+    <section id="projects" class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold text-primary">Our Projects</h1>
+            <p class="text-muted fs-5">Explore our residential and commercial developments designed with quality,
+                comfort, and innovation in mind.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Project Card 1 -->
+            <div class="col-md-4">
+                <div class="card project-card border-0 shadow-sm">
+                    <div class="project-image-wrapper">
+                        <img th:src="@{/images/house.png}" class="card-img-top" alt="Maytri Greens">
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold text-dark">MaytriReality Greens</h5>
+                        <p class="text-muted">Located in Madhapur, this eco-friendly gated community offers modern 2 & 3
+                            BHK homes surrounded by lush greenery.</p>
+                        <a th:href="@{/contact_us}" class="btn btn-primary btn-sm">Enquire Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="col-md-4">
+                <div class="card project-card border-0 shadow-sm">
+                    <div class="project-image-wrapper">
+                        <img th:src="@{/images/house.png}" class="card-img-top" alt="Maytri Lakeview">
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold text-dark">MaytriReality Lakeview</h5>
+                        <p class="text-muted">A premium lake-facing property in Gachibowli offering luxurious apartments
+                            with world-class amenities.</p>
+                        <a th:href="@{/contact_us}" class="btn btn-primary btn-sm">Enquire Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="col-md-4">
+                <div class="card project-card border-0 shadow-sm">
+                    <div class="project-image-wrapper">
+                        <img th:src="@{/images/house.png}" class="card-img-top" alt="Maytri Trinity">
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold text-dark">MaytriReality Trinity</h5>
+                        <p class="text-muted">A blend of comfort and connectivity, offering modern living near major IT
+                            hubs in Hyderabad.</p>
+                        <a th:href="@{/contact_us}" class="btn btn-primary btn-sm">Enquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <div th:replace="headersAndFooters/footer"></div>
+</body>
+
+</html>

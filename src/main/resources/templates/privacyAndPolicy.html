@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaytriReality</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<body>
+    <div th:replace="headersAndFooters/navbar"></div>
+    <section class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold text-primary">Privacy Policy</h1>
+            <p class="text-muted fs-5">Your privacy is important to us at Maytri Group.</p>
+        </div>
+
+        <div class="card shadow-sm p-4 border-0">
+            <h4 class="text-dark mb-3">1. Introduction</h4>
+            <p>
+                Maytri Group ("we", "our", "us") is committed to protecting your privacy.
+                This Privacy Policy explains how we collect, use, and protect your personal information
+                when you visit our website or interact with us through any digital or offline means.
+            </p>
+
+            <h4 class="text-dark mt-4 mb-3">2. Information We Collect</h4>
+            <p>
+                We may collect the following types of information:
+            </p>
+            <ul>
+                <li>Personal details such as your name, email, phone number, and address when you fill out forms.</li>
+                <li>Website usage information through cookies and analytics tools.</li>
+                <li>Any communication you send to us through our contact forms or email.</li>
+            </ul>
+
+            <h4 class="text-dark mt-4 mb-3">3. How We Use Your Information</h4>
+            <p>
+                We use the collected information to:
+            </p>
+            <ul>
+                <li>Respond to your enquiries and provide requested services.</li>
+                <li>Improve our website and user experience.</li>
+                <li>Share updates, offers, or project details (only with your consent).</li>
+            </ul>
+
+            <h4 class="text-dark mt-4 mb-3">4. Data Protection</h4>
+            <p>
+                We implement appropriate technical and organizational measures to protect your personal data
+                from unauthorized access, alteration, disclosure, or destruction.
+            </p>
+
+            <h4 class="text-dark mt-4 mb-3">5. Third-Party Links</h4>
+            <p>
+                Our website may contain links to external websites.
+                We are not responsible for the content or privacy practices of those third-party sites.
+            </p>
+
+            <h4 class="text-dark mt-4 mb-3">6. Your Rights</h4>
+            <p>
+                You may request access to, correction, or deletion of your personal data at any time
+                by contacting us at <a href="mailto:info@maytrigroup.in">info@maytrigroup.in</a>.
+            </p>
+
+            <h4 class="text-dark mt-4 mb-3">7. Updates to This Policy</h4>
+            <p>
+                We may update this Privacy Policy from time to time to reflect changes in our practices or for legal
+                reasons.
+                The updated policy will always be available on this page.
+            </p>
+
+            <h4 class="text-dark mt-4 mb-3">8. Contact Us</h4>
+            <p>
+                If you have any questions about this Privacy Policy or how we handle your data,
+                please contact us at:
+            </p>
+            <ul>
+                <li><strong>Email:</strong> info@maytrigroup.in</li>
+                <li><strong>Phone:</strong> +91 98765 43210</li>
+                <li><strong>Address:</strong> Maytri Group, Trendz Trinity, Madhapur, Hyderabad</li>
+            </ul>
+        </div>
+    </section>
+
+    <div th:replace="headersAndFooters/footer"></div>
+</body>
+
+</html>

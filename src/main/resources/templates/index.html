@@ -8,29 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        /* Navbar overlay */
-        .navbar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .navbar-brand img {
-            width: 100px;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .navbar-dark .navbar-nav .nav-link {
-            color: white;
-            font-weight: 500;
-        }
-
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: #ffc107;
+        /* Make sure content starts below navbar */
+        body {
+            padding-top: 70px;
+            /* Adjust depending on navbar height */
+            margin: 0;
         }
 
         @media (max-width: 768px) {
@@ -39,7 +21,6 @@
             }
         }
 
-        /* Carousel */
         #bannerCarousel .carousel-item {
             height: 500px;
         }
@@ -64,14 +45,23 @@
             margin: 0;
         }
 
-        .btn {
-            position: absolute;
-            top: 230px;
-            right: 0px;
-        }
 
         #para_about {
             box-shadow: 5px 5px 10px gray;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        .home {
+            text-align: justify;
+            text-justify: inter-word;
+
+            hyphens: auto;
+
+            line-height: 1.6;
         }
 
         #para_about img {
@@ -81,15 +71,49 @@
         .head_top {
             text-align: center;
             color: white;
-            padding: 10px;
+            padding: 14px;
             border-radius: 20px;
+            margin-top: -70px;
+            margin-bottom: -15px;
         }
 
         .box {
             background-color: lightblue;
             box-shadow: 0 0 5px gray;
             transition: 0.3s ease;
+
         }
+
+        .box {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #222;
+            text-align: justify;
+
+            margin: 0 auto;
+        }
+
+        .side-img {
+            float: left;
+            /* Make text wrap around the image */
+            width: 150px;
+            /* Adjust image size as needed */
+            height: auto;
+            margin: 0 15px 10px 0;
+            /* Space around the image */
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        /* Responsive: stack on smaller screens */
+        @media (max-width: 600px) {
+            .side-img {
+                float: none;
+                display: block;
+                margin: 0 auto 15px auto;
+            }
+        }
+
 
         .box:hover {
             box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
@@ -105,11 +129,12 @@
 
         .details_kuteer {
             flex: 1;
+            padding: 28px;
         }
 
         .half_img {
             flex: 1;
-            padding-left: 150px;
+            padding: 18px;
         }
 
         .half_img img {
@@ -120,6 +145,11 @@
 
         .project {
             box-shadow: 10px 10px 10px 10px gray;
+        }
+
+        .project:hover {
+            background-color: #084298;
+            transform: translateY(-10px);
         }
 
         .form_project_details {
@@ -162,6 +192,16 @@
             box-shadow: 1px 1px gray;
             background-color: red;
         }
+
+        .linksToOtherProjects a.btn {
+            width: 90%;
+            margin: 8px auto;
+            display: block;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+
 
         .linksToOtherProjects a:hover {
             transform: scale(1.05);
@@ -280,27 +320,17 @@
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-overlay">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img th:src="@{/images/logo.jpeg}" alt="Logo"></a>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about_us">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact_us">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
+    <div th:replace="headersAndFooters/navbar :: navbar"></div>
 
     <!-- Carousel -->
     <div id="bannerCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -339,31 +369,26 @@
     <!-- Home Section -->
     <div id="home" class="container mt-5 pt-5">
         <h3 class="bg-primary head_top">Get to know Who we are</h3><br>
-        <p class="box" id="para_about"><img th:src="@{/images/man.png}" alt="hand_signal">
+        <p class="box" id="para_about">
+            <img th:src="@{/images/man.png}" alt="hand_signal" class="side-img">
+            Maytri Reality is a trusted name in Hyderabad’s real estate landscape, known for delivering quality homes
+            and
+            modern living spaces. We specialize in creating residential projects that perfectly blend comfort, safety,
+            and contemporary design. Every home we build reflects our commitment to excellence and our passion for
+            crafting spaces that families truly love to live in.
 
-            Maytri is a trusted construction group offering best real estate in Hyderabad.
-                With 13
-                years of experience,
-                we are known for building homes and spaces that people love to live in. Our projects are designed to
-                give
-                families comfort, safety, and modern living, while also keeping nature and open spaces in mind. Over the
-                years, Maytri has created many successful residential projects that bring together quality, style, and
-                value.
+            At Maytri Reality, we believe a home should offer more than just shelter—it should enhance your lifestyle.
+            That’s why our projects are thoughtfully planned with wide layouts, lush greenery, and sustainable designs
+            that balance urban living with nature. From strong structures to stylish finishes, we ensure every detail
+            contributes to lasting quality and satisfaction.
 
-                Every project we take up is carefully planned with attention to detail. From wide layouts and green
-                surroundings to strong structures and modern designs, we make sure everything adds to a better
-                lifestyle.
-                For a family looking for their dream home, Maytri truly fits their needs.
-
-                Our team works with honesty, transparency, and dedication, which has helped us earn the trust of many
-                happy
-                customers. We deliver projects on time and focus on creating safe, peaceful, and well-connected
-                communities
-                across Hyderabad.
-
-                If you are looking for a home or an investment that gives you comfort, value, and growth, we are here to
-                help you find the perfect place.
+            Our team works with integrity, transparency, and dedication, earning the trust of countless happy homeowners
+            across Hyderabad. We take pride in delivering projects on time and building vibrant, well-connected
+            communities where families can thrive. Whether you’re searching for your dream home or a smart investment,
+            Maytri Reality Builders is here to help you find a space that brings you comfort, value, and long-term
+            growth.
         </p>
+
 
         <!-- Kuteer Project -->
         <div class="project container box bg-white my-4">
@@ -384,7 +409,7 @@
     </div>
     <!-- Projects Section -->
     <div id="projects" class="container my-5">
-        <h1 class="text-center heading_projects">For all Our Projects</h1><br>
+        <h1 class="text-center heading_projects text-primary">For all Our Projects</h1><br>
         <div class="form_project_details">
 
             <!-- Left Side: Project Enquiry Form -->
@@ -422,19 +447,22 @@
             </div>
 
             <!-- Right Side: Other Projects Links -->
-            <div class="linksToOtherProjects box">
-                <h3>Explore Our Projects</h3>
-                <a href="#">Kuteer</a>
-                <a href="#">Ambhuja</a>
-                <a href="#">Susheela</a>
+            <div class="col-lg-5">
+                <div class="linksToOtherProjects p-3" style="background:var(--muted-bg); border-radius:10px;">
+                    <h5 style="color:var(--primary); font-weight:700;">Explore Our Projects</h5>
+                    <a href="#" class="btn btn-outline-warning mt-3">Kuteer</a>
+                    <a href="#" class="btn btn-outline-warning mt-3">Ambhuja</a>
+                    <a href="#" class="btn btn-outline-warning mt-3">Susheela</a>
+                </div>
             </div>
+
         </div>
     </div>
 
     <!-- About Us Section -->
     <div id="about_us" class="container my-5">
         <h2 class="text-center">We are at MaytriReality</h2>
-        <p>Maytri Group is a trusted name in real estate and infrastructure development...</p>
+        <p>MaytriReality Group is a trusted name in real estate and infrastructure development...</p>
         <div class="team-container">
             <div class="p1">
                 <img src="https://maytrigroup.in/public/uploads/teams/team_1760338051_Managing%20Partner.webp"
@@ -464,49 +492,68 @@
     </div>
 
     <!-- Contact Us Section -->
-    <div id="contact_us" class="container my-5 contact-us">
-        <div class="row g-4">
-            <!-- Contact Form -->
-            <div class="col-lg-6">
-                <div class="p-4 bg-white shadow rounded">
-                    <h2>Contact Us</h2>
-                    <div th:if="${contactSuccessMessage}" class="alert alert-success"
-                        th:text="${contactSuccessMessage}"></div>
-                    <form th:action="@{/enquiry/contact}" th:object="${contactEnquiry}" method="post">
+    <!-- CONTACT US (Content + Map) -->
+    <section id="contact_us" class="section bg-white">
+        <div class="container reveal">
+            <div class="row g-5 align-items-center">
 
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" th:field="*{name}" placeholder="Your Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" th:field="*{email}" placeholder="Your Email"
-                                required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control" th:field="*{message}" rows="5"
-                                placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="submit">Send Message</button>
-                    </form>
-                </div>
-            </div>
+                <!-- Left: Info -->
+                <div class="col-lg-6">
+                    <h3 class="fw-bold mb-3"
+                        style="color: var(--primary); border-left: 5px solid var(--accent); padding-left: 12px;">
+                        Get in Touch with Us
+                    </h3>
 
-            <!-- Contact Info -->
-            <div class="col-lg-6">
-                <div class="p-4 bg-light shadow rounded">
-                    <h2>Get in Touch</h2>
-                    <p>We would love to hear from you! Reach out via any of the following ways:</p>
-                    <ul class="list-unstyled">
-                        <li><strong>Address:</strong> 123 Maytri Street, Hyderabad, India</li>
-                        <li><strong>Phone:</strong> +91 12345 67890</li>
-                        <li><strong>Email:</strong> info@maytrigroup.in</li>
-                    </ul>
+                    <p class="mb-4" style="font-size: 1.05rem; color: #333; line-height: 1.8;">
+                        At <strong>MaytriReality Group</strong>, we’re always ready to help you find your perfect home
+                        or
+                        investment.
+                        Visit us at our corporate office or reach out via phone or email — our team will be happy to
+                        assist.
+                    </p>
+
+                    <div class="d-flex align-items-start mb-3">
+                        <i class="bi bi-geo-alt-fill me-3" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div>
+                            <h6 class="mb-1 fw-bold">Our Address</h6>
+                            <p class="mb-0">
+                                4th Floor, Plot No. 18, Trendz Trinity,<br>
+                                Survey No. 31-36, Gafoor Nagar,<br>
+                                Madhapur (Village), Serilingampally Mandal,<br>
+                                Hyderabad, Telangana 500081, India
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-3">
+                        <i class="bi bi-telephone-fill me-3" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div>
+                            <h6 class="mb-1 fw-bold">Call Us</h6>
+                            <p class="mb-0">+91 98765 43210 / +91 98765 43211</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="bi bi-envelope-fill me-3" style="font-size: 1.5rem; color: var(--primary);"></i>
+                        <div>
+                            <h6 class="mb-1 fw-bold">Email</h6>
+                            <p class="mb-0">info@maytrirealitygroup.in</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Right: Google Map -->
+                <div class="col-lg-6">
+                    <div class="ratio ratio-4x3 rounded shadow">
+                        <iframe src="https://www.google.com/maps?q=Trendz%20Trinity%20Madhapur%20Hyderabad&output=embed"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Floating Enquiry Button -->
     <button class="enquiry-btn" data-bs-toggle="modal" data-bs-target="#enquiryModal">Enquiry Now</button>
@@ -555,45 +602,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer bg-dark text-white pt-5 pb-3">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <h5>About Maytri Group</h5>
-                    <p>Maytri Group is a trusted name in real estate and infrastructure development...</p>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#home" class="text-white">Home</a></li>
-                        <li><a href="#projects" class="text-white">Projects</a></li>
-                        <li><a href="#about_us" class="text-white">About Us</a></li>
-                        <li><a href="#contact_us" class="text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Contact Info</h5>
-                    <ul class="list-unstyled">
-                        <li><strong>Address:</strong> 123 Maytri Street, Hyderabad, India</li>
-                        <li><strong>Phone:</strong> +91 12345 67890</li>
-                        <li><strong>Email:</strong> info@maytrigroup.in</li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Follow Us</h5>
-                    <div class="d-flex gap-2 mt-2">
-                        <a href="#" class="btn btn-outline-light btn-sm">Facebook</a>
-                        <a href="#" class="btn btn-outline-light btn-sm">Twitter</a>
-                        <a href="#" class="btn btn-outline-light btn-sm">Instagram</a>
-                    </div>
-                </div>
-            </div>
-            <hr class="bg-light mt-4">
-            <div class="text-center">
-                <p class="mb-0">&copy; 2025 Maytri Group. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div th:replace="headersAndFooters/footer :: footer"></div>
+
 
 </body>
 

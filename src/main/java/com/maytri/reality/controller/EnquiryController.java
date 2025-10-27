@@ -13,7 +13,7 @@ public class EnquiryController {
     @Autowired
     private EnquiryRepository enquiryRepository;
 
-    // Home page
+    // Home Page
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("projectEnquiry", new Enquiry());
@@ -31,7 +31,7 @@ public class EnquiryController {
         return "redirect:/";
     }
 
-    // Contact Form Submission
+    // 📬 Contact Form Submission
     @PostMapping("/enquiry/contact")
     public String submitContact(@ModelAttribute("contactEnquiry") Enquiry enquiry, Model model) {
         enquiryRepository.save(enquiry);
@@ -40,12 +40,38 @@ public class EnquiryController {
         return "redirect:/";
     }
 
-    // Modal Form Submission
+    // 💬 Modal Form Submission
     @PostMapping("/enquiry/modal")
     public String submitModal(@ModelAttribute("modalEnquiry") Enquiry enquiry, Model model) {
         enquiryRepository.save(enquiry);
         model.addAttribute("modalEnquiry", new Enquiry());
         model.addAttribute("modalSuccessMessage", "Modal enquiry submitted successfully!");
         return "redirect:/";
+    }
+
+    //Projects Page
+    @GetMapping("/projects")
+    public String projects(Model model) {
+        return "projects"; // templates/projects.html
+    }
+
+    // About Us Page
+    @GetMapping("/about_us")
+    public String aboutUs(Model model) {
+        return "about_us"; // templates/about_us.html
+    }
+
+    // Contact Us Page
+    @GetMapping("/contact_us")
+    public String contactUs(Model model) {
+        return "contact_us"; // templates/contact_us.html
+    }
+    @GetMapping("/termsAndConditions")
+    public String termsAndConditions(Model model){
+        return "termsAndConditions";
+    }
+    @GetMapping("/privacyAndPolicy")
+    public String privacyAndPolicy(Model model){
+        return "privacyAndPolicy";
     }
 }
