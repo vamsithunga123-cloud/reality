@@ -43,7 +43,8 @@ public class AdminControllers {
     @GetMapping("/admin-enquiries/download-by-date")
     public ResponseEntity<byte[]> downloadEnquiriesByDate(
             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) throws IOException {
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate)
+            throws IOException {
 
         List<Enquiry> enquiries = enquiryRepository.findByCreatedDateBetween(startDate, endDate);
         String fileName = String.format("enquiries_%s_to_%s.csv", startDate, endDate);

@@ -1,7 +1,12 @@
 package com.maytri.reality.controller;
 
 import com.maytri.reality.model.Enquiry;
+import com.maytri.reality.model.Project;
 import com.maytri.reality.repository.EnquiryRepository;
+import com.maytri.reality.repository.ProjectRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +17,8 @@ public class EnquiryController {
 
     @Autowired
     private EnquiryRepository enquiryRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     // Home Page
     @GetMapping("/")
@@ -19,10 +26,12 @@ public class EnquiryController {
         model.addAttribute("projectEnquiry", new Enquiry());
         model.addAttribute("contactEnquiry", new Enquiry());
         model.addAttribute("modalEnquiry", new Enquiry());
-        return "index"; // Thymeleaf template name
+        List<Project> projects = projectRepository.findAll();
+    model.addAttribute("projects", projects);
+        return "index"; 
     }
 
-    // Project Form Submission
+
     @PostMapping("/enquiry/project")
     public String submitProject(@ModelAttribute("projectEnquiry") Enquiry enquiry, Model model) {
         enquiryRepository.save(enquiry);
@@ -51,7 +60,7 @@ public class EnquiryController {
 
     //Projects Page
     @GetMapping("/projects")
-    public String projects(Model model) {
+    public String projects() {
         return "projects"; // templates/projects.html
     }
 

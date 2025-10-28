@@ -61,35 +61,35 @@
 
         <div class="row g-4">
             <!-- Project Card 1 -->
-            <div class="col-md-4">
-                <div class="card project-card border-0 shadow-sm">
-                    <div class="project-image-wrapper">
-                        <img th:src="@{/images/house.png}" class="card-img-top" alt="Maytri Greens">
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="fw-bold text-dark">MaytriReality Greens</h5>
-                        <p class="text-muted">Located in Madhapur, this eco-friendly gated community offers modern 2 & 3
-                            BHK homes surrounded by lush greenery.</p>
-                        <a th:href="@{/contact_us}" class="btn btn-primary btn-sm">Enquire Now</a>
-                    </div>
-                </div>
+           <div class="row g-4">
+    <div class="col-md-4" th:each="project : ${projects}">
+        <div class="card project-card border-0 shadow-sm">
+            <div class="project-image-wrapper">
+                <img th:src="${project.imageUrl}" class="card-img-top" th:alt="${project.title}">
             </div>
+            <div class="card-body text-center">
+                <h5 class="fw-bold text-dark" th:text="${project.title}"></h5>
+                <p class="text-muted" th:text="${project.description}"></p>
+                <a th:href="@{/contact_us}" class="btn btn-primary btn-sm">Enquire Now</a>
+            </div>
+        </div>
+    </div>
+</div>
 
             <!-- Project Card 2 -->
-            <div class="col-md-4">
+        <div class="col-md-4">
                 <div class="card project-card border-0 shadow-sm">
                     <div class="project-image-wrapper">
-                        <img th:src="@{/images/house.png}" class="card-img-top" alt="Maytri Lakeview">
+                        <img th:src="@{/images/house.png}" class="card-img-top" alt="Maytri Trinity">
                     </div>
                     <div class="card-body text-center">
-                        <h5 class="fw-bold text-dark">MaytriReality Lakeview</h5>
-                        <p class="text-muted">A premium lake-facing property in Gachibowli offering luxurious apartments
-                            with world-class amenities.</p>
+                        <h5 class="fw-bold text-dark">Maytri Advitha</h5>
+                        <p class="text-muted">A blend of comfort and connectivity, offering modern living near major IT
+                            hubs in Hyderabad.</p>
                         <a th:href="@{/contact_us}" class="btn btn-primary btn-sm">Enquire Now</a>
                     </div>
                 </div>
             </div>
-
             <!-- Project Card 3 -->
             <div class="col-md-4">
                 <div class="card project-card border-0 shadow-sm">
@@ -97,7 +97,7 @@
                         <img th:src="@{/images/house.png}" class="card-img-top" alt="Maytri Trinity">
                     </div>
                     <div class="card-body text-center">
-                        <h5 class="fw-bold text-dark">MaytriReality Trinity</h5>
+                        <h5 class="fw-bold text-dark">Maytri Advitha</h5>
                         <p class="text-muted">A blend of comfort and connectivity, offering modern living near major IT
                             hubs in Hyderabad.</p>
                         <a th:href="@{/contact_us}" class="btn btn-primary btn-sm">Enquire Now</a>
