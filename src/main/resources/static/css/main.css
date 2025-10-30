@@ -3,10 +3,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color:#b3cbea; 
+  background-color:#69a4f0; 
   z-index: 1030;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  padding: 4px 20px; /* Reduced padding to make navbar smaller */
+  padding: 35px 20px; /* Reduced padding to make navbar smaller */
   height: 66px;
 }
 
