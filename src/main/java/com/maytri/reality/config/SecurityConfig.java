@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
@@ -18,28 +19,25 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            .csrf(csrf -> csrf.disable()) // disable CSRF for testing; enable later if needed
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // ✅ Public pages and forms
                 .requestMatchers("/", "/index", "/contact", "/enquiry", "/modal-enquiry").permitAll()
-                // ✅ Static assets and H2
                 .requestMatchers("/images/**", "/css/**", "/js/**", "/h2-console/**").permitAll()
-                // ✅ Admin routes are protected
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                // ✅ Everything else is allowed
                 .anyRequest().permitAll()
             )
             .formLogin(login -> login
                 .loginPage("/login")
-                .defaultSuccessUrl("/admin/enquiries", true)
+                .defaultSuccessUrl("/admin/enquiries", true)  // redirect to dashboard
                 .permitAll()
             )
             .logout(logout -> logout
                 .logoutSuccessUrl("/")
                 .permitAll()
-            );
+            )
+            // 👇 Add our auto-logout filter
+            .addFilterBefore(new AutoLogoutFilter(), UsernamePasswordAuthenticationFilter.class);
 
-        // for H2 console to work properly
         http.headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();

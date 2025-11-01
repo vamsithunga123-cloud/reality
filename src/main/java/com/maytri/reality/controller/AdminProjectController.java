@@ -14,7 +14,7 @@ public class AdminProjectController {
     @Autowired
     private ProjectRepository projectRepository;
 
-    // View all projects
+    
     @GetMapping
     public String viewProjects(Model model) {
         model.addAttribute("projects", projectRepository.findAll());
@@ -22,7 +22,7 @@ public class AdminProjectController {
         return "admin-projects";
     }
 
-    // Add new project
+   
     @PostMapping("/add")
     public String addProject(@ModelAttribute Project project) {
         projectRepository.save(project);

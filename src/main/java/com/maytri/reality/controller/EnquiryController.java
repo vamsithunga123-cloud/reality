@@ -1,7 +1,9 @@
 package com.maytri.reality.controller;
 
+import com.maytri.reality.model.Carousal;
 import com.maytri.reality.model.Enquiry;
 import com.maytri.reality.model.Project;
+import com.maytri.reality.repository.CarousalRepository;
 import com.maytri.reality.repository.EnquiryRepository;
 import com.maytri.reality.repository.ProjectRepository;
 
@@ -19,6 +21,8 @@ public class EnquiryController {
     private EnquiryRepository enquiryRepository;
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private CarousalRepository carousalRepository;
 
     // Home Page
     @GetMapping("/")
@@ -27,6 +31,8 @@ public class EnquiryController {
         model.addAttribute("contactEnquiry", new Enquiry());
         model.addAttribute("modalEnquiry", new Enquiry());
         List<Project> projects = projectRepository.findAll();
+        List<Carousal> banners =carousalRepository.findAll();
+         model.addAttribute("banners", banners);
     model.addAttribute("projects", projects);
         return "index"; 
     }
